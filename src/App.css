@@ -1,6 +1,10 @@
 .App {
   text-align: center;
 }
+.App div ul {
+  list-style-type: none;
+  text-align: center;
+}
 
 .App-logo {
   height: 40vmin;

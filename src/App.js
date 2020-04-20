@@ -19,7 +19,7 @@ function App() {
   const deleteInput = (index) => {
     console.log({ index })
     let deleteFilter = [...todoList]
-    deleteFilter = deleteFilter.filter((item,idx)=> idx !== index)
+    deleteFilter = deleteFilter.filter((item, idx) => idx !== index)
     // console.log(deleteAdd)
     setTodoList(deleteFilter)
 
@@ -30,8 +30,18 @@ function App() {
   }
 
   const editInput = (index) => {
+    console.log(index);
     let editFilter = [...todoList]
-    editFilter = editFilter.filter((item, idx) => idx === index)
+    editFilter = editFilter.map((item, idx) => {
+      if (idx === index) {
+        let editPrompt = prompt("Please edit your Todolist")
+        return { id: item.id, value: editPrompt };
+
+      } else {
+        return item;
+      };
+    })
+    console.log(editFilter);
     setTodoList(editFilter);
   }
 
@@ -50,7 +60,7 @@ function App() {
 
           <ul>
             {todoList.map((obj, index) =>
-              <li key={obj.id}> {obj.value} &nbsp; <button onClick={()=> editInput(index)}>Edit</button> &nbsp; <button onClick={() => deleteInput(index)}> Delete </button>  </li>
+              <li key={obj.id}> {obj.value} &nbsp; <button onClick={() => editInput(index)}>Edit</button> &nbsp; <button onClick={() => deleteInput(index)}> Delete </button>  </li>
             )}
           </ul>
 
